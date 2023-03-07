@@ -155,14 +155,19 @@ k explain deployment --recursive
 ### Create Resource Inline
 
 ```bash
-# create a service
-k create svc clusterip my-service --tcp=8080 --dry-run=client -o yaml
+# create a pod
+k run nginx --image=nginx --restart=Never --dry-run=client -o yaml
 
 # create a deployment
 k create deploy nginx --image=nginx --dry-run=client -o yaml
 
-# create a pod
-k run nginx --image=nginx --restart=Never --dry-run=client -o yaml
+# create a service & ingress
+k create svc clusterip my-service --tcp=80:80 --dry-run=client -o yaml
+k create ingress ${Name} --tcp=80:80 --dry-run=client -o yaml
+
+# create a secret & configmap
+k create secret generic my-secret --from-file ${FILENAME}
+k create configmap my-config --from-literal=special.how=very
 ```
 
 ### Edit Resource Inline
