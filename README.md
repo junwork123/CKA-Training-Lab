@@ -184,6 +184,7 @@ k config set-context --current --namespace=${toChange}
 
 # Scale a deployment
 k scale deploy my-deployment --replicas=5
+```
 
 ### Delete Resource Inline
 
@@ -196,7 +197,7 @@ k delete pod ${podId} --force --grace-period=0
 
 # Delete all specified resources in current namespace
 kubectl delete pod -n test --all 
-
+```
 
 ### Specific Situation Command
 ```bash
