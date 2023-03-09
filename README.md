@@ -130,6 +130,12 @@ k run --image=busybox $do -- "/bin/sh" "-c" "sleep 36000"
 ### Status Diagnosis
 
 ```bash
+# Check the status of kubelet
+sudo systemctl status kubelet
+
+# Check the status of System Pod
+k logs -n kube-system ${SYSTEM POD NAME}
+
 # Display addresses of the master and services
 k cluster-info
 
@@ -174,8 +180,28 @@ k create configmap my-config --from-literal=special.how=very
 
 ```bash
 # Change Default Namespace
-kubectl config set-context --current --namespace=${toChange}
+k config set-context --current --namespace=${toChange}
 
+# Scale a deployment
+k scale deploy my-deployment --replicas=5
+
+### Delete Resource Inline
+
+```bash
+# Delete a pod
+k delete pod ${podId}
+
+# Force delete a pod
+k delete pod ${podId} --force --grace-period=0
+
+# Delete all specified resources in current namespace
+kubectl delete pod -n test --all 
+
+
+### Specific Situation Command
+```bash
+# Count the number of pods in a namespace
+k get pod -n my-namespace | wc -l
 
 ```
 
