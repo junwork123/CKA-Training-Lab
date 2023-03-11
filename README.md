@@ -179,7 +179,6 @@ k get pod ${podId} -o yaml > pod.yaml
 k create deploy nginx --image=nginx  > deploy.yaml
 k create deploy nginx --image=nginx $do > deploy.yaml # # if you have set alias, you can use $do
 ```
-
 ### Update
 
 ```bash
@@ -200,7 +199,7 @@ k delete pod ${podId} --force --grace-period=0
 k delete pod -n test --all 
 ```
 
-### `RBAC` ( Role Based Access Control )
+### RBAC ( Role Based Access Control )
 
 Only one thing to remember is that the Role and ClusterRole are the same, 
 
