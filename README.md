@@ -1,6 +1,6 @@
 # CKA-TrainingLab
 
-## Notice
+## Exam Information
 
 This Document was created at 03/2023
 
