@@ -133,28 +133,22 @@ k run --image=busybox $do -- "/bin/sh" "-c" "sleep 36000"
 # Check the status of kubelet
 sudo systemctl status kubelet
 
+# Check correct context
+k config get-contexts
+k config set-context ${CONTEXT NAME} # if you want to change context
+
 # Check the status of System Pod
 k logs -n kube-system ${SYSTEM POD NAME}
 
 # Display addresses of the master and services
-k cluster-info
-
-# Dump current cluster state to stdout
-k cluster-info dump
-
-# List the nodes
-k get nodes
+k cluster-info [dump] # dump option is for more detail
 
 # List all resources in all namespaces, with more details
 k get all -A -o wide
 
-# Show metrics for a given node
-k top node my-node
-
-# Use "kubectl describe" for related events and troubleshooting
+# Show related events,  metrics for troubleshooting
 k describe pods ${podId}
-
-# Use "kubectl explain" to check the structure of a resource object.
+k top node my-node
 k explain deployment --recursive
 ```
 
@@ -179,9 +173,6 @@ k create configmap my-config --from-literal=special.how=very
 ### Edit Resource Inline
 
 ```bash
-# Change Default Namespace
-k config set-context --current --namespace=${toChange}
-
 # Scale a deployment
 k scale deploy my-deployment --replicas=5
 ```
@@ -196,13 +187,32 @@ k delete pod ${podId}
 k delete pod ${podId} --force --grace-period=0
 
 # Delete all specified resources in current namespace
-kubectl delete pod -n test --all 
+k delete pod -n test --all 
+```
+
+### RBAC( Role Based Access Control )
+
+```bash
+k create role dev \ 
+-n default \
+--verb=get,list,watch,update \
+--resource=pods \ 
+--resource-name=test-pod \ 
+
+# ClusterRole has no namespace
+k create clusetrole dev \
+--verb=get,list,watch,update \
+--resource=pods \
+--resource-name=test-pod
 ```
 
 ### Specific Situation Command
 ```bash
 # Count the number of pods in a namespace
 k get pod -n my-namespace | wc -l
+
+# Check authentication
+k auth can-i create deployments -n default --as guest
 
 ```
 
