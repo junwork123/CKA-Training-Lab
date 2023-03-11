@@ -192,18 +192,22 @@ k delete pod -n test --all
 
 ### RBAC( Role Based Access Control )
 
+Only one thing to remember is that the Role and ClusterRole are the same, 
+
+but the Role is in the namespace, and the ClusterRole is not in the namespace.
+
 ```bash
-k create role dev \ 
--n default \
+k create [role, clusterrole] dev-role \ 
+-n default \ # ClusterRole has no namespace
 --verb=get,list,watch,update \
 --resource=pods \ 
---resource-name=test-pod \ 
-
-# ClusterRole has no namespace
-k create clusetrole dev \
---verb=get,list,watch,update \
---resource=pods \
 --resource-name=test-pod
+
+k create rolebinding dev-binding \
+-n default \ # ClusterRoleBinding has no namespace
+--role=dev-role \
+--clusterrole=dev-clusterrole \
+--serviceaccount=default:test-sa
 ```
 
 ### Specific Situation Command
