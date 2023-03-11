@@ -4,14 +4,13 @@
 
 This Document was created at 03/2023
 
-- Kubernetes version: 1.26
-- 2 hours
-- 15-20 questions
-- Pass mark of 66%
+- Kubernetes version: `1.26`
+- `2 hours`
+- `15-20` questions
+- Pass mark of `66%`
+- `Webcam` and `microphone`
 - Remotely proctored
 - Chrome browser plus an extension
-- Government-issued non-expired ID
-- Webcam and microphone
 - Steady internet, preferably 5MB up/down
 
 <br>
@@ -108,23 +107,22 @@ k run --image=busybox $do -- "/bin/sh" "-c" "sleep 36000"
 
 ### Short Words
 
-- pods : po
-- deployments : deploy
-- services : svc
-- replicasets : rs
-- replicationcontollers : rc
-- configmaps : cm
-- namespaces : ns
-- nodes : no
-- persistentvolumeclaims : pvc
-- persistentvolumes : pv
-- resourcequotas : quota
-- serviceaccounts : sa
-- daemonsets : ds
-- cronjobs : cj
-- ingresses : ing
-- storageclasses : sc
-
+- `pods` : po
+- `deployments` : deploy
+- `services` : svc
+- `replicasets` : rs
+- `replicationcontollers` : rc
+- `configmaps` : cm
+- `namespaces` : ns
+- `nodes` : no
+- `persistentvolumeclaims` : pvc
+- `persistentvolumes` : pv
+- `resourcequotas` : quota
+- `serviceaccounts` : sa
+- `daemonsets` : ds
+- `cronjobs` : cj
+- `ingresses` : ing
+- `storageclasses` : sc
 
 
 ### Status Diagnosis
@@ -152,7 +150,7 @@ k top node my-node
 k explain deployment --recursive
 ```
 
-### Create Resource Inline
+### Create
 
 ```bash
 # create a deployment
@@ -167,7 +165,7 @@ k create secret generic my-secret --from-file ${FILENAME}
 k create configmap my-config --from-literal=special.how=very
 ```
 
-### Read Resource Inline
+### Read
 
 if you want to create a resource from the yaml file,
 
@@ -182,14 +180,14 @@ k create deploy nginx --image=nginx  > deploy.yaml
 k create deploy nginx --image=nginx $do > deploy.yaml # # if you have set alias, you can use $do
 ```
 
-### Update Resource Inline
+### Update
 
 ```bash
 # Scale a deployment
 k scale deploy my-deployment --replicas=5
 ```
 
-### Delete Resource Inline
+### Delete
 
 ```bash
 # Delete a pod
@@ -202,7 +200,7 @@ k delete pod ${podId} --force --grace-period=0
 k delete pod -n test --all 
 ```
 
-### RBAC( Role Based Access Control )
+### `RBAC` ( Role Based Access Control )
 
 Only one thing to remember is that the Role and ClusterRole are the same, 
 
