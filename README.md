@@ -155,22 +155,34 @@ k explain deployment --recursive
 ### Create Resource Inline
 
 ```bash
-# create a pod
-k run nginx --image=nginx --restart=Never --dry-run=client -o yaml
-
 # create a deployment
-k create deploy nginx --image=nginx --dry-run=client -o yaml
+k create deploy nginx --image=nginx 
 
 # create a service & ingress
-k create svc clusterip my-service --tcp=80:80 --dry-run=client -o yaml
-k create ingress ${Name} --tcp=80:80 --dry-run=client -o yaml
+k create svc clusterip my-service --tcp=80:80 
+k create ingress ${Name} --tcp=80:80 
 
 # create a secret & configmap
 k create secret generic my-secret --from-file ${FILENAME}
 k create configmap my-config --from-literal=special.how=very
 ```
 
-### Edit Resource Inline
+### Read Resource Inline
+
+if you want to create a resource from the yaml file,
+
+you can use the following command (Don't memorize yaml file)
+
+```bash
+# from existing resource
+k get pod ${podId} -o yaml > pod.yaml
+
+# from scratch
+k create deploy nginx --image=nginx  > deploy.yaml
+k create deploy nginx --image=nginx $do > deploy.yaml # # if you have set alias, you can use $do
+```
+
+### Update Resource Inline
 
 ```bash
 # Scale a deployment
