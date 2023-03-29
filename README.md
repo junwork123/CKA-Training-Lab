@@ -19,7 +19,7 @@ This Document was created at 03/2023
 
 ## Curriculum
 
-Please check detail [CNCF Repo](https://github.com/cncf/curriculum)
+Please check more details at [CNCF Repo](https://github.com/cncf/curriculum)
 
 ### [Cluster Architecture, Installation & Configuration](https://github.com/junwork123/CKA-TrainingLab/wiki/1.-Cluster-Architecture,-Installation-&-Configuration) (25%)
 
