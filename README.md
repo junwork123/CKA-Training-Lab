@@ -25,7 +25,7 @@ Please check detail [CNCF Repo](https://github.com/cncf/curriculum)
 
 ### [Workloads & Scheduling](https://github.com/junwork123/CKA-TrainingLab/wiki/2.-Workloads-&-Scheduling) (15%)
 
-### [Services & Networking](jhttps://github.com/junwork123/CKA-TrainingLab/wiki/3.-Services-&-Networking) (20%)
+### [Services & Networking](https://github.com/junwork123/CKA-TrainingLab/wiki/3.-Services-&-Networking) (20%)
 
 ### [Storage](https://github.com/junwork123/CKA-TrainingLab/wiki/4.-Storage) (10%)
 
