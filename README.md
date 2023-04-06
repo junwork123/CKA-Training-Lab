@@ -99,10 +99,10 @@ sudo systemctl status kubelet
 
 # Check correct context
 k config get-contexts
-k config set-context ${CONTEXT NAME} # if you want to change context
+k config set-context ${Context_Name} # if you want to change context
 
 # Check the status of System Pod
-k logs -n kube-system ${SYSTEM POD NAME}
+k logs -n kube-system ${System_Pod_Name}
 
 # Display addresses of the master and services
 k cluster-info [dump] # dump option is for more detail
@@ -111,23 +111,24 @@ k cluster-info [dump] # dump option is for more detail
 k get all -A -o wide
 
 # Show related events,  metrics for troubleshooting
-k describe pods ${podId}
+k describe pods ${Pod_Id}
 k top node my-node
 k explain deployment --recursive
+
 ```
 
 ### Create
 
 ```bash
 # create a deployment
-k create deploy nginx --image=nginx 
+k create deploy nginx --image=nginx
 
 # create a service & ingress
-k create svc clusterip my-service --tcp=80:80 
-k create ingress ${Name} --tcp=80:80 
+k create svc clusterip my-service --tcp=80:80
+k create ingress ${Name} --tcp=80:80
 
 # create a secret & configmap
-k create secret generic my-secret --from-file ${FILENAME}
+k create secret generic my-secret --from-file ${File_Name}
 k create configmap my-config --from-literal=special.how=very
 ```
 
@@ -139,15 +140,35 @@ you can use the following command (Don't memorize yaml file)
 
 ```bash
 # from existing resource
-k get pod ${podId} -o yaml > pod.yaml
+k get pod ${Pod_Id} -o yaml > pod.yaml
 
 # from scratch
 k create deploy nginx --image=nginx  > deploy.yaml
-k create deploy nginx --image=nginx $do > deploy.yaml # # if you have set alias, you can use $do
+# if you have set alias, you can use $do
+k create deploy nginx --image=nginx $do > deploy.yaml 
 ```
 ### Update
 
 ```bash
+# apply changes to resource (partial change)
+k apply -f ${File_Name}
+
+# replaces a resource with a new configuration file.
+# old resource will be removed and new one created.
+k replace -f ${File_Name}
+
+# edit in user’s shell.
+k edit ${Resource_Type} ${Resource_Name}
+
+# patch a resource with new property values.
+k patch ${Resource_Type} ${Resource_Name} -p '{"property_name":"new_value"}'
+
+# updates the container image in a deployment.
+k set image deployment ${Deployment_Name} ${New_Image}=${Image_Url}
+
+# restarts a rollout of a Kubernetes resource
+k rollout restart deployment ${Deployment_Name}
+
 # Scale a deployment
 k scale deploy my-deployment --replicas=5
 ```
